@@ -16,8 +16,8 @@ public class User {
 	private String passwordHash;
 	private int coins;
 	private int skillPoints;
-	// private List<TreasureHunt> treasureHunts;
-	// private TreasureHunt activeTreasureHunt;
+	private List<TreasureHunt> treasureHunts;
+	private TreasureHunt activeTreasureHunt;
 
 	// get existing user from database
 	public User (String username) throws Exception {
@@ -249,8 +249,8 @@ public class User {
 		}
 	}
 
-	// public List<TreasureHunt> getTreasureHunts () {
-	// 	return this.treasureHunts;
+	// public List<TreasureHunt> getUserHunts () {
+	// 	return
 	// }
 
 	// public void addTreasureHunt (TreasureHunt treasureHunt) {
