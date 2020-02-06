@@ -1,9 +1,12 @@
 #TreasureHunt API - Usage
 
+##Compiling
+	// build .jar file
+	$ ./make_jar.sh
+
 ##User class
 
 ###Database
-
 	// check if user exists in the database
 	int userExists = User.userExists(String username);
 	
@@ -17,14 +20,12 @@
 	User john = new User(String username);
 
 ###User IDs
-
 	// get user ID
 	int userId = john.getUserId();
 
 	// no setUserId() : userId should not be changed.
 
 ###Usernames
-
 	// get username
 	String username = john.getUsername();
 
@@ -32,7 +33,6 @@
 	john.setUsername (String username);
 
 ###Emails
-
 	// get email
 	String email = john.getEmail();
 
@@ -40,7 +40,6 @@
 	john.setEmail (String email);
 
 ###Passwords
-
 	// get password hash
 	String passwordHash = john.getPasswordHash();
 
@@ -51,7 +50,6 @@
 	john.checkPassword(String password);
 
 ###Coins
-
 	// get coins
 	int coins = john.getCoins();
 
@@ -62,7 +60,6 @@
 	john.removeCoins(int coins);
 
 ###Skill Points
-
 	// get skill points
 	int skillPoints = john.getSkillPoints();
 
