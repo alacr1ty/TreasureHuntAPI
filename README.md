@@ -1,6 +1,9 @@
-// TreasureHunt API - Usage
+#TreasureHunt API - Usage
 
-// Database
+##User class
+
+###Database
+
 	// check if user exists in the database
 	int userExists = User.userExists(String username);
 	
@@ -13,27 +16,31 @@
 	// get existing user from database
 	User john = new User(String username);
 
-// User IDs
+###User IDs
+
 	// get user ID
 	int userId = john.getUserId();
 
 	// no setUserId() : userId should not be changed.
 
-// Usernames
+###Usernames
+
 	// get username
 	String username = john.getUsername();
 
 	// set username
 	john.setUsername (String username);
 
-// Emails
+###Emails
+
 	// get email
 	String email = john.getEmail();
 
 	// set username
 	john.setEmail (String email);
 
-// Passwords
+###Passwords
+
 	// get password hash
 	String passwordHash = john.getPasswordHash();
 
@@ -43,7 +50,8 @@
 	// check password
 	john.checkPassword(String password);
 
-// Coins
+###Coins
+
 	// get coins
 	int coins = john.getCoins();
 
@@ -53,7 +61,8 @@
 	// remove coins
 	john.removeCoins(int coins);
 
-// Skill Points
+###Skill Points
+
 	// get skill points
 	int skillPoints = john.getSkillPoints();
 
@@ -62,10 +71,3 @@
 
 	// remove skill points
 	john.removeSkillPoints(int points);
-
-// Avatars
-	// get avatar URL
-	String avatarURL = john.getAvatarURL();
-
-	// set avatar URL
-	john.setAvatarURL(String avatarURL);
