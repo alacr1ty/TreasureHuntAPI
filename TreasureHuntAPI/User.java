@@ -347,7 +347,8 @@ public class User {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			disconnectDB(con);
+			if (con != null)
+				disconnectDB(con);
 			return exists;			
 		}
 	
@@ -389,8 +390,9 @@ public class User {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			disconnectDB(con);
-			return exists;			
+			if (con != null)
+				disconnectDB(con);
+			return exists;		
 		}
 	
 	}
@@ -399,12 +401,23 @@ public class User {
 		Connection con = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
 			DriverManager.setLoginTimeout(5);
 
+			// // Establishing Connection 
+			// con = DriverManager.getConnection(
+			// 	"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt?" +
+			// 	"useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=PST",
+			// 	"capstone_2019_treasurehunt",
+			// 	"KiWXM1cStAboVBiF");
+
 			// Establishing Connection 
-			con = DriverManager.getConnection("jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt?" + "user=capstone_2019_treasurehunt&" + "password=KiWXM1cStAboVBiF");
+			con = DriverManager.getConnection(
+				"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt",
+				"capstone_2019_treasurehunt",
+				"KiWXM1cStAboVBiF");
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			// throw ex;

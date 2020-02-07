@@ -11,9 +11,11 @@
 
 	// check if user exists in the database
 	int userExists = User.userExists(String username);
-	
+		// returns 0, 1, or -1
+		
 	// check if email exists in the database
 	int emailExists = User.emailExists(String email);
+		// returns 0, 1, or -1
 
 	// create new user and add to database
 	User john = new User (String username, String email, String password, int coins, int skillPoints);
