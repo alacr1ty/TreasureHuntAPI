@@ -89,13 +89,12 @@ public class User {
 
 	private int getUserIdDB () {
 		// search database for user
-		Connection con = null;
+		Connection con = connectDB();
 		Statement stmt = null;
 		ResultSet rs = null;
 		int res = -1;
 
 		try {
-			con = connectDB();
 			stmt = con.createStatement();
 		
 			// the query will be a SELECT...
@@ -271,23 +270,18 @@ public class User {
 	// }
 
 	private void updateUser () {
-		Connection con = null;
+		Connection con = connectDB();
 
-		try {
-			con = connectDB();
+		int userExists = userExists(username);
+		
+		if (userExists == 1)
+			updateUserDB(con);
+		else
+		 	createUserDB(con);
 
-			int userExists = userExists(username);
-			
-			if (userExists == 1)
-				updateUserDB(con);
-			else
-			 	createUserDB(con);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (con != null)
-				disconnectDB(con);
-		}	
+		disconnectDB(con);
+
+		return;
 	}
 
 	private void updatePassword (String password) {
@@ -342,6 +336,8 @@ public class User {
 	}
 
 	public static int userExists (String username) {
+
+		
 		Connection con = null;
 		int exists = -1;
 
@@ -383,6 +379,8 @@ public class User {
 	}
 
 	public static int emailExists (String email) {
+
+		
 		Connection con = null;
 		int exists = -1;
 
@@ -399,7 +397,7 @@ public class User {
 	
 	}
 
-	private static Connection connectDB () throws Exception {
+	private static Connection connectDB () {
 		Connection con = null;
 
 		try {
@@ -407,29 +405,25 @@ public class User {
 
 			DriverManager.setLoginTimeout(5);
 
-			// Establishing Connection 
-			con = DriverManager.getConnection(
-				"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt?" +
-				"useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=PST",
-				"capstone_2019_treasurehunt",
-				"KiWXM1cStAboVBiF");
-
-			System.out.println("TEST");
-
 			// // Establishing Connection 
 			// con = DriverManager.getConnection(
-			// 	"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt",
+			// 	"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt?" +
+			// 	"useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=PST",
 			// 	"capstone_2019_treasurehunt",
 			// 	"KiWXM1cStAboVBiF");
 
+			// Establishing Connection 
+			con = DriverManager.getConnection(
+				"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt",
+				"capstone_2019_treasurehunt",
+				"KiWXM1cStAboVBiF");
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		} finally {
-			if (con != null)
-				return con;
-			else
-				throw new Exception("DriverManager.getConnection() returned null.");
+			// throw ex;
 		}
+
+		return con;
 	}
 
 	private void updateUserDB (Connection con) {
