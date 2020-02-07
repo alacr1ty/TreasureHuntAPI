@@ -407,6 +407,8 @@ public class User {
 
 			DriverManager.setLoginTimeout(5);
 
+			// System.out.println("TEST1");
+
 			// Establishing Connection 
 			con = DriverManager.getConnection(
 				"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt?" +
@@ -414,21 +416,22 @@ public class User {
 				"capstone_2019_treasurehunt",
 				"KiWXM1cStAboVBiF");
 
-			System.out.println("TEST");
-
 			// // Establishing Connection 
 			// con = DriverManager.getConnection(
 			// 	"jdbc:mysql://classmysql.engr.oregonstate.edu:3306/capstone_2019_treasurehunt",
 			// 	"capstone_2019_treasurehunt",
 			// 	"KiWXM1cStAboVBiF");
 
+			// System.out.println("TEST2");
+
 		} catch (Exception ex) {
+			// System.out.println("TEST3");
 			ex.printStackTrace();
 		} finally {
 			if (con != null)
 				return con;
 			else
-				throw new Exception("DriverManager.getConnection() returned null.");
+				throw new Exception("Could not connect to server. java.sql.DriverManager.getConnection() failed.");
 		}
 	}
 
