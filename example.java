@@ -18,7 +18,6 @@ public class example {
 		try {
 			// if user exists in the database
 			int userExists = User.userExists(username);
-			
 			if (userExists == 1) {
 				System.out.println("User found.");
 
